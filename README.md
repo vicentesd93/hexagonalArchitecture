@@ -18,7 +18,7 @@
 | <img src="https://www.adictosaltrabajo.com/wp-content/uploads/2020/03/hibernate.jpg" width="24">                                                                                                                                                                                                                                                 | ORM / Persistencia         | JPA Hibernate      | https://hibernate.org/ | _HIBERNATE_ 5.1.2.Final (Annotations) - 5.6.5.Final (Core) <br/> _JPA_ 2.6.2 |
 
 
-###Construcción de la Aplicación (build)
+### Construcción de la Aplicación (build)
 
 ---
 
@@ -42,6 +42,11 @@ Para la ejecución de las prueba se deben realizar los siguiente pasos:
 
 - Ejecute el proyecto lanzando la tarea `test` de Gradle para ejecutar los test unitarios.
 
+### Pruebas Postman
+
+Se ha añadido al raiz del proyecto, un archivo llamado `HexagonalArchitecture.postman_collection.json` el cual podremos
+importarlo a nuestra coleccion postman para hacer pruebas REST de la aplicación.
+
 ### Configuración BBDD H2
 En el archivo `resources/application.properties` tendremos la siguiente configuración:<br/>
 
@@ -62,10 +67,6 @@ En la base de datos de comercio electrónico de la compañía disponemos de la t
 (pvp) y la tarifa que aplica a un producto de una cadena entre unas fechas determinadas. A continuación se muestra un 
 ejemplo de la tabla con los campos relevantes:
 
-### Pruebas Postman
-
-Se ha añadido al raiz del proyecto, un archivo llamado `HexagonalArchitecture.postman_collection.json` el cual podremos 
-importarlo a nuestra coleccion postman para hacer pruebas REST de la aplicación.
 #### Tabla: _PRICES_
 | BRAND_ID | START_DATE | END_DATE | PRICE_LIST | PRODUCT_ID |PRIORITY| PRICE  | CURR   |
 |------|------|----------|------|------|------|--------|--------|
