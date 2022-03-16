@@ -1,4 +1,4 @@
-## Arquitectura Hexagonal con SpringBoot + TDD (Desarrollo guiado por Test)
+## Arquitectura Hexagonal con SpringBoot + TDD
 
 ![img.png](HexagonalArchitecture.png)
 
@@ -44,10 +44,15 @@ Para la ejecución de las prueba se deben realizar los siguiente pasos:
 
 ### Pruebas Postman
 
+---
+
 Se ha añadido al raiz del proyecto, un archivo llamado `HexagonalArchitecture.postman_collection.json` el cual podremos
 importarlo a nuestra coleccion postman para hacer pruebas REST de la aplicación.
 
 ### Configuración BBDD H2
+
+---
+
 En el archivo `resources/application.properties` tendremos la siguiente configuración:<br/>
 
 `spring.datasource.url=jdbc:h2:mem:testdb`<br/>
@@ -62,6 +67,8 @@ Descomentaremos las siguientes lineas cuando queramos activar la consola para ve
 <br/>
 
 ### Enunciado de la aplicación
+
+---
 
 En la base de datos de comercio electrónico de la compañía disponemos de la tabla PRICES que refleja el precio final 
 (pvp) y la tarifa que aplica a un producto de una cadena entre unas fechas determinadas. A continuación se muestra un 
