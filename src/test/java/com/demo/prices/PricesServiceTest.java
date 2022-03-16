@@ -14,6 +14,7 @@ import java.text.ParseException;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -52,8 +53,7 @@ class PricesServiceTest {
     }
 
     private void configMocking(String fch, List<Price> expectedPriceRepository, PriceOut expected) throws ParseException {
-        when(priceRepository.getPriceByFchAndIdProductAndIdBrand(
-                fch, 35455, 1)).thenReturn(expectedPriceRepository);
-        when(priceMapper.priceToPriceOut(expectedPriceRepository.get(0))).thenReturn(expected);
+        when(priceRepository.getPriceByFchAndIdProductAndIdBrand(fch,35455,1)).thenReturn(expectedPriceRepository);
+        when(priceMapper.priceToPriceOut((Price) any())).thenReturn(expected);
     }
 }
