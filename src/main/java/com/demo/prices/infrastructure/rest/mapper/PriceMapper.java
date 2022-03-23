@@ -1,6 +1,6 @@
 package com.demo.prices.infrastructure.rest.mapper;
 
-import com.demo.prices.domain.Price;
+import com.demo.prices.domain.model.Price;
 import com.demo.prices.infrastructure.rest.io.PriceOut;
 import org.mapstruct.Mapper;
 

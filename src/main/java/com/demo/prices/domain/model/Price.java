@@ -1,4 +1,4 @@
-package com.demo.prices.domain;
+package com.demo.prices.domain.model;
 
 import lombok.Data;
 

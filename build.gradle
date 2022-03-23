@@ -24,16 +24,24 @@ ext {
 	h2Version = "2.1.210"
 	starterTestVersion = "2.6.4"
 	starterWebVersion = "2.6.4"
+	openapiVersion = "1.6.6"
 }
 
 dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-web:${starterWebVersion}"
 	implementation "org.springframework.boot:spring-boot-starter-data-jpa:${jpaVersion}"
 
-	implementation "org.mapstruct:mapstruct:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}", "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
-	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}", "org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+	implementation "org.mapstruct:mapstruct:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}",
+			"org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
+	annotationProcessor "org.mapstruct:mapstruct-processor:${mapstructVersion}",
+			"org.projectlombok:lombok:${lombokVersion}",
+			"org.projectlombok:lombok-mapstruct-binding:${lombokMapstructBindingVersion}"
 
 	runtimeOnly "com.h2database:h2:${h2Version}"
+
+	implementation "org.springdoc:springdoc-openapi-ui:${openapiVersion}",
+			"org.springdoc:springdoc-openapi-ui:${openapiVersion}"
+
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${starterTestVersion}"
 }
 

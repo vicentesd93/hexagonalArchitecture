@@ -1,6 +1,10 @@
 package com.demo.prices.infrastructure.rest;
 
-import com.demo.prices.application.PriceService;
+import com.demo.prices.domain.usecases.PriceUseCases;
+import com.demo.prices.infrastructure.rest.doc.ApiRestControllerSwagger;
+import com.demo.prices.infrastructure.rest.handler.exceptions.InvalidDateException;
+import com.demo.prices.infrastructure.rest.handler.exceptions.NotFoundPriceException;
+import com.demo.prices.infrastructure.rest.handler.exceptions.NumberParseException;
 import com.demo.prices.infrastructure.rest.io.PriceOut;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -9,16 +13,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.text.ParseException;
-
 @RestController
 @RequiredArgsConstructor
-public class ApiRestController {
+public class ApiRestController implements ApiRestControllerSwagger {
 
-    private final PriceService priceService;
+    private final PriceUseCases priceUseCases;
 
-    @GetMapping("/price/{fch}/{idProduct}/{idString}")
-    public ResponseEntity<PriceOut> getPrice(@PathVariable String fch, @PathVariable long idProduct, @PathVariable long idString) throws ParseException {
-        return new ResponseEntity<>(priceService.getPriceByFchAndIdProductAndIdBrand(fch, idProduct, idString), HttpStatus.NOT_IMPLEMENTED);
+    @GetMapping("/price/{fch}/{idProduct}/{idBrand}")
+    public ResponseEntity<PriceOut> getPrice(@PathVariable String fch, @PathVariable String idProduct, @PathVariable String idBrand)
+            throws InvalidDateException, NotFoundPriceException, NumberParseException {
+        return new ResponseEntity<>(priceUseCases.getPriceByFchAndIdProductAndIdBrand(fch, idProduct, idBrand),
+                HttpStatus.OK);
     }
 }

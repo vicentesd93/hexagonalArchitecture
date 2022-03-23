@@ -1,7 +1,12 @@
-package com.demo.prices.infrastructure.util;
+package com.demo.prices;
 
-import com.demo.prices.domain.Price;
+import com.demo.prices.domain.model.Price;
+import com.demo.prices.domain.vo.Currency;
+import com.demo.prices.domain.vo.DatePrice;
 import com.demo.prices.infrastructure.jpa.dbo.PriceEntity;
+import com.demo.prices.infrastructure.rest.handler.exceptions.InvalidDateException;
+import com.demo.prices.infrastructure.rest.handler.exceptions.NotFoundPriceException;
+import com.demo.prices.infrastructure.rest.handler.exceptions.NumberParseException;
 import com.demo.prices.infrastructure.rest.io.PriceOut;
 
 import java.text.ParseException;
@@ -23,9 +28,25 @@ public class UtilTest {
     public static final String FCH_START_TEST_3 = "2020-06-15-00.00.00";
     public static final String FCH_START_TEST_4 = "2020-06-15-16.00.00";
 
+    public static final String BRAND_ID = "1";
+    public static final String PRODUCT_ID = "35455";
+
 
     private UtilTest() {
         throw new IllegalStateException("Utility class");
+    }
+
+    public static String messageError(int test){
+        switch (test){
+            case 1 :
+                return NotFoundPriceException.MESSAGE;
+            case 2 :
+                return InvalidDateException.MESSAGE;
+            case 3 :
+                return NumberParseException.MESSAGE;
+            default:
+                return "";
+        }
     }
 
     public static PriceOut PriceExpectedOut(int test) throws ParseException {
@@ -89,8 +110,8 @@ public class UtilTest {
         PriceOut addPrice = new PriceOut();
 
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_1));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_1_4));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_1).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_1_4).getDate());
         addPrice.setPrice(35.50);
         addPrice.setPriceList(1);
         addPrice.setProductId(35455);
@@ -98,8 +119,8 @@ public class UtilTest {
 
         addPrice = new PriceOut();
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_2));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_2));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_2).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_2).getDate());
         addPrice.setPrice(25.45);
         addPrice.setPriceList(2);
         addPrice.setProductId(35455);
@@ -107,8 +128,8 @@ public class UtilTest {
 
         addPrice = new PriceOut();
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_3));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_3));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_3).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_3).getDate());
         addPrice.setPrice(30.50);
         addPrice.setPriceList(3);
         addPrice.setProductId(35455);
@@ -116,8 +137,8 @@ public class UtilTest {
 
         addPrice = new PriceOut();
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_4));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_1_4));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_4).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_1_4).getDate());
         addPrice.setPrice(38.95);
         addPrice.setPriceList(4);
         addPrice.setProductId(35455);
@@ -131,46 +152,46 @@ public class UtilTest {
         Price addPrice = new Price();
 
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_1));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_1_4));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_1).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_1_4).getDate());
         addPrice.setPrice(35.50);
         addPrice.setPriceList(1);
         addPrice.setProductId(35455);
         addPrice.setPriority(0);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         addPrice = new Price();
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_2));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_2));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_2).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_2).getDate());
         addPrice.setPrice(25.45);
         addPrice.setPriceList(2);
         addPrice.setProductId(35455);
         addPrice.setPriority(1);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         addPrice = new Price();
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_3));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_3));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_3).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_3).getDate());
         addPrice.setPrice(30.50);
         addPrice.setPriceList(3);
         addPrice.setProductId(35455);
         addPrice.setPriority(1);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         addPrice = new Price();
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_4));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_1_4));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_4).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_1_4).getDate());
         addPrice.setPrice(38.95);
         addPrice.setPriceList(4);
         addPrice.setProductId(35455);
         addPrice.setPriority(1);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         return allPrices;
@@ -182,49 +203,49 @@ public class UtilTest {
 
         addPrice.setUuid(UUID.randomUUID().toString());
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_1));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_1_4));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_1).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_1_4).getDate());
         addPrice.setPrice(35.50);
         addPrice.setPriceList(1);
         addPrice.setProductId(35455);
         addPrice.setPriority(0);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         addPrice = new PriceEntity();
         addPrice.setUuid(UUID.randomUUID().toString());
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_2));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_2));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_2).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_2).getDate());
         addPrice.setPrice(25.45);
         addPrice.setPriceList(2);
         addPrice.setProductId(35455);
         addPrice.setPriority(1);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         addPrice = new PriceEntity();
         addPrice.setUuid(UUID.randomUUID().toString());
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_3));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_3));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_3).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_3).getDate());
         addPrice.setPrice(30.50);
         addPrice.setPriceList(3);
         addPrice.setProductId(35455);
         addPrice.setPriority(1);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         addPrice = new PriceEntity();
         addPrice.setUuid(UUID.randomUUID().toString());
         addPrice.setBrandID(1);
-        addPrice.setStarDate(Util.stringFchToDateFch(FCH_START_TEST_4));
-        addPrice.setEndDate(Util.stringFchToDateFch(FCH_END_TEST_1_4));
+        addPrice.setStarDate(new DatePrice(FCH_START_TEST_4).getDate());
+        addPrice.setEndDate(new DatePrice(FCH_END_TEST_1_4).getDate());
         addPrice.setPrice(38.95);
         addPrice.setPriceList(4);
         addPrice.setProductId(35455);
         addPrice.setPriority(1);
-        addPrice.setCurr(Util.EUR);
+        addPrice.setCurr(String.valueOf(Currency.EUR));
         allPrices.add(addPrice);
 
         return allPrices;

@@ -1,8 +1,9 @@
 package com.demo.prices.infrastructure.jpa.config;
 
+import com.demo.prices.domain.vo.Currency;
+import com.demo.prices.domain.vo.DatePrice;
 import com.demo.prices.infrastructure.jpa.dbo.PriceEntity;
 import com.demo.prices.infrastructure.jpa.repository.PriceDbJpaRepository;
-import com.demo.prices.infrastructure.util.Util;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -23,17 +24,17 @@ public class SpringDataConfig implements ApplicationRunner {
 
     @Override
     public void run(ApplicationArguments args) throws Exception {
-        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, Util.stringFchToDateFch
-                ("2020-06-14-00.00.00"), Util.stringFchToDateFch("2020-12-31-23.59.59"), 1,
-                35455, 0, 35.50, Util.EUR));
-        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, Util.stringFchToDateFch
-                ("2020-06-14-15.00.00"), Util.stringFchToDateFch("2020-06-14-18.30.00"), 2,
-                35455, 1, 25.45, Util.EUR));
-        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, Util.stringFchToDateFch
-                ("2020-06-15-00.00.00"), Util.stringFchToDateFch("2020-06-15-11.00.00"), 3,
-                35455, 1, 30.50, Util.EUR));
-        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, Util.stringFchToDateFch
-                ("2020-06-15-16.00.00"), Util.stringFchToDateFch("2020-12-31-23.59.59"), 4,
-                35455, 1, 38.95, Util.EUR));
+        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, new DatePrice
+                ("2020-06-14-00.00.00").getDate(), new DatePrice("2020-12-31-23.59.59").getDate(), 1,
+                35455, 0, 35.50, String.valueOf(Currency.EUR)));
+        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, new DatePrice
+                ("2020-06-14-15.00.00").getDate(), new DatePrice("2020-06-14-18.30.00").getDate(), 2,
+                35455, 1, 25.45, String.valueOf(Currency.EUR)));
+        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, new DatePrice
+                ("2020-06-15-00.00.00").getDate(), new DatePrice("2020-06-15-11.00.00").getDate(), 3,
+                35455, 1, 30.50, String.valueOf(Currency.EUR)));
+        priceDbJpaRepository.save(new PriceEntity(UUID.randomUUID().toString(),1, new DatePrice
+                ("2020-06-15-16.00.00").getDate(), new DatePrice("2020-12-31-23.59.59").getDate(), 4,
+                35455, 1, 38.95, String.valueOf(Currency.EUR)));
     }
 }
