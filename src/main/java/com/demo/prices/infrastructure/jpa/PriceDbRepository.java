@@ -1,6 +1,6 @@
 package com.demo.prices.infrastructure.jpa;
 
-import com.demo.prices.application.PriceRepository;
+import com.demo.prices.domain.repository.PriceRepository;
 import com.demo.prices.domain.model.Price;
 import com.demo.prices.infrastructure.jpa.dbo.PriceEntity;
 import com.demo.prices.infrastructure.jpa.mapper.PriceEntityMapper;

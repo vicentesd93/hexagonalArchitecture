@@ -1,6 +1,6 @@
 package com.demo.prices;
 
-import com.demo.prices.application.PriceRepository;
+import com.demo.prices.domain.repository.PriceRepository;
 import com.demo.prices.application.PriceService;
 import com.demo.prices.domain.model.Price;
 import com.demo.prices.infrastructure.rest.handler.exceptions.InvalidDateException;

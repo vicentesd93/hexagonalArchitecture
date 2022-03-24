@@ -1,4 +1,4 @@
-package com.demo.prices.application;
+package com.demo.prices.domain.repository;
 
 import com.demo.prices.domain.model.Price;
 
